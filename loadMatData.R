@@ -27,11 +27,17 @@ dots[,3] <- runif(n,min=min(input.data[["input"]][,3]),max=max(input.data[["inpu
 # want to use (the surrogate function it has 201^3 points and I'd like to run it with between 
 # 10,000 and 100,000 dots). 
 # It would be great if each coordinate could have its own element of the list, like this: 
-new.input<-list(input.data[["input"]][,1],input.data[["input"]][,2],input.data[["input"]][,3])
-names(new.input)<-c("x","y","z")
+#new.input<-list(input.data[["input"]][,1],input.data[["input"]][,2],input.data[["input"]][,3]) # old line
+#names(new.input)<-c("x","y","z")
+
+new.input<-matrix(data=NA, ncol = 3, nrow = length(input.data[["input"]][,1]))
+new.input[,1]<-input.data[["input"]][,1]
+new.input[,2]<-input.data[["input"]][,2]
+new.input[,3]<-input.data[["input"]][,3]
+
 # And calling the function would look like:
 ans<-GetNeighbors(new.input, dots, 3)
 # I could use ans in fmat to return values: 
-fmat.values<-fmat.data[["fmat"]][ans]
+#fmat.values<-fmat.data[["fmat"]][ans]
 # What do you think? Everything is flexible. 
 
