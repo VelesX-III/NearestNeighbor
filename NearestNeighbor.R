@@ -15,14 +15,17 @@ GetNeighbors <- function(vectors, testVector, desiredNeighbors) {
   distances = list()
   for (i in 1:length(vectors)) {
     distances[[i]] <-
-      list(vector = vectors[[i]],
-           distance = Norm(testVector, vectors[[i]]))
+      list(
+        vector = vectors[[i]],
+        distance = Norm(testVector, vectors[[i]]),
+        index = i
+      )
   }
   sortedDistances <- list.sort(distances, distance)
   
   neighbors <- list()
   for (i in 1:desiredNeighbors) {
-    neighbors[[i]] <- sortedDistances[[i]]$vector
+    neighbors[[i]] <- sortedDistances[[i]]$index
   }
   return(neighbors)
 }
